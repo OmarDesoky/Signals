@@ -1,24 +1,38 @@
                           #Main
                           #Part D
- 
 
- 
-#[m] = @(t)  (1-2*(abs(t)) ) .* (t<=0.5) .*(t>=-0.5) 
-#plot(t,m(t));                    
-
-#fouries_Transform = fft(m(t));
-#plot(fouries_Transform) 
-
-t=-0.5:0.0001:0.5;
-
+figure('Name','Part D');
+                          
 T=6;   
-                      
-[h_real] = @(t) (1-2*(abs(t)) ) .* (t<=0.5) .*(t>=-0.5)  .* cos(2*pi*k*t);
-[h_imag] = @(t) (1-2*(abs(t)) ) .* (t<=0.5) .*(t>=-0.5)  .* sin(2*pi*k*t);
+ak= [];
+range=-10:1:10;
 
-k_range=-100:1:100;
-
-for i =-100:1:100
-  k=k_range[i]
-  
+for  z=1:21
+  k = range(z);
+  [h_expo] =  @(t)  (1-2.*abs(t) ) .* exp((-2*pi/T)*t*k*i).* (t<=0.5) .*(t>=-0.5);
+  answer = quadgk(h_expo,-3,3);
+  Ak = answer /T;
+  ak = [ak Ak];
 endfor
+
+
+#displaying ak's  in command line 
+disp(ak);
+
+ #calculating mag and phase
+mag = abs(ak);
+phase =arg(ak);
+ 
+#plotting magnitude
+subplot(2,1,1);
+stem(range,mag);
+xlabel('Frequency');
+ylabel('ak');
+title('Magnitude');
+
+#plotting phase
+subplot(2,1,2)
+stem(range,phase);
+xlabel('Frequency');
+ylabel('ak');
+title('Phase');
