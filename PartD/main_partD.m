@@ -5,9 +5,9 @@ figure('Name','Part D');
                           
 T=6;   
 ak= [];
-range=-10:1:10;
+range=-100:1:100;
 
-for  z=1:21
+for  z=1:201
   k = range(z);
   [h_expo] =  @(t)  (1-2.*abs(t) ) .* exp((-2*pi/T)*t*k*i).* (t<=0.5) .*(t>=-0.5);
   answer = quadgk(h_expo,-3,3);
@@ -26,6 +26,7 @@ phase =arg(ak);
 #plotting magnitude
 subplot(2,1,1);
 stem(range,mag);
+axis([-10 10]);
 xlabel('Frequency');
 ylabel('ak');
 title('Magnitude');
@@ -33,6 +34,7 @@ title('Magnitude');
 #plotting phase
 subplot(2,1,2)
 stem(range,phase);
+axis([-10 10]);
 xlabel('Frequency');
 ylabel('ak');
 title('Phase');
