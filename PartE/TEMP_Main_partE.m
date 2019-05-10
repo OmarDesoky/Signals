@@ -1,0 +1,13 @@
+subplot(2,1,1);
+t=[-100:0.001:100];
+Y = 5*sinc(5*pi*t);
+result = fft (Y);
+rest = fftshift(abs(result));
+plot (t,rest);
+axis([-10 10]);
+subplot(2,1,2);
+r = Y.* cos(30*pi*t );
+result = fft (r);
+rest = fftshift(abs(result));
+plot (t,rest);
+axis([-10 10]);
