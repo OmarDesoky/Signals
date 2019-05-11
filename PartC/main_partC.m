@@ -24,5 +24,5 @@ interval = 15 - (-15);
 power = energy / interval;
 
 msgbox(
-strcat("energy = " ,mat2str(Inf),"\n","power = ",mat2str(power))
+strcat("energy = " ,mat2str(energy),"\n","power = ",mat2str(power))
 );
